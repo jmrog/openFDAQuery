@@ -8,6 +8,8 @@
             el.closest('fieldset')
                 .find('div.sub-data-set').addClass('hidden').end()
                 .find('div.sub-data-set').has('input[name="sub-data-' + el.val() + '"]').removeClass('hidden');
+
+            $('#data-set-choice').text(el.val() + 's');
         }); // end click handler for data-set radio buttons
 
         // begin "Add Search Item" button click handler
@@ -33,7 +35,7 @@
 
         // begin "Submit" click handler
         $('#query-form').on('submit', function(evt) {
-            var dataSet, subDataSet, searchItems, fullSearch, baseURL, apiKey;
+            var dataSet, subDataSet, searchItems, fullSearch, baseURL, apiKey, limit;
             var el = $(this);
 
             evt.preventDefault();
@@ -81,8 +83,10 @@
                 return searchString;
             }, '');
 
+            limit = parseInt($('input[name="limit"]').val(), 10) || 25;
+
             baseURL = 'https://api.fda.gov/' + dataSet + '/' + subDataSet + '.json?api_key=' + apiKey +
-                      '&search=';
+                      '&limit=' + limit + '&search=';
 
             $.getJSON(baseURL + fullSearch)
                 .done(function(data) {

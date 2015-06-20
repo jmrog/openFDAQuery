@@ -57,7 +57,7 @@
                             </div>
                         </fieldset>
                         <fieldset id="search-item-fieldset">
-                            <legend>What do you want to search for in <span class="data-set-choice"></span>?</legend>
+                            <legend>What do you want to search for in <b><span id="data-set-choice">drugs</span></b>?</legend>
                             <small>Searches can consist of a field and a term, but <strong>the field is optional</strong> (a search with no field searches all fields). Spaces are allowed <strong>in the term only</strong>. To search for multiple items (i.e., multiple field/term pairs, where the field is optional), use the "Add Search Item" button.</small><br /><br />
                             <div class="search-item">
                                 <span id="search-item-1-heading">Search Item <span class="search-item-num">1</span></span><br />
@@ -67,7 +67,9 @@
                             <br />
                             <button type="button" id="add-search-term">Add Search Item</button>
                         </fieldset>
-                        <button type="submit">Submit</button>
+                        <br />
+                        <label>How many results (at most) do you want? <input type="number" name="limit" min="1" max="200" step="1" /></label><br /><br />
+                        <button type="submit">Submit Query</button>
                     </form>
 
                     <div id="results">
