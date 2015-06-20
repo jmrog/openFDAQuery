@@ -33,6 +33,17 @@
             searchItemClone.insertBefore('button#add-search-term');
         }); // end "Add Search Item" button click handler
 
+        // begin click handler for "Toggle Instructions" link
+        $('#instructions-toggle').on('click', function(evt) {
+            var instructionsDiv = $('#search-instructions');
+
+            evt.preventDefault();
+            evt.stopPropagation();
+
+            instructionsDiv.toggleClass('hidden');
+            $(this).text(instructionsDiv.hasClass('hidden') ? 'Show Search Instructions' : 'Hide Search Instructions');
+        });
+
         // begin "Submit" click handler
         $('#query-form').on('submit', function(evt) {
             var dataSet, subDataSet, searchItems, fullSearch, baseURL, apiKey, limit;

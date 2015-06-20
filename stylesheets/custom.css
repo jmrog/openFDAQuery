@@ -5,3 +5,7 @@
 div.sub-data-set {
     padding-left: 30px;
 }
+
+a#instructions-toggle {
+    text-decoration: underline;
+}
