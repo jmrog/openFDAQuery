@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
         <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
         <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+        <link rel="stylesheet" type="text/css" href="stylesheets/custom.css" media="screen, print">
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <!--[if lt IE 9]>
@@ -33,15 +34,46 @@
                         <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome
                     </h3>
                     <p>The purpose of this page is to simplify the task of making queries to the openFDA data sets. Simply use the form below to make your query; you do not need to know the details of the openFDA API.</p>
+                    <strong>NOTE: Currently only the most basic of searches are supported. We hope to add additional capabilities soon.</strong><br /><br />
 
                     <form id="query-form">
-                        <fieldset>
+                        <fieldset id="data-set-fieldset">
                             <legend>Choose a data set:</legend>
-                            <input type="radio" name="data-set" id="data-set-drugs" value="drugs" /><label for="data-set-drugs">Drugs</label>
-                            <input type="radio" name="data-set" id="data-set-devices" value="devices" /><label for="data-set-devices">Devices</label>
-                            <input type="radio" name="data-set" id="data-set-foods" value="foods" /><label for="data-set-foods">Foods</label>
+                            <label><input type="radio" name="data-set" value="drug" checked="checked" /> Drugs</label><br />
+                            <div class="sub-data-set">
+                                <label><input type="radio" name="sub-data-drug" value="event" checked="checked" /> Adverse Events</label><br />
+                                <label><input type="radio" name="sub-data-drug" value="label" /> Labeling</label><br />
+                                <label><input type="radio" name="sub-data-drug" value="enforcement" /> Enforcement Reports</label><br />
+                            </div>
+                            <label><input type="radio" name="data-set" value="device" /> Devices</label><br />
+                            <div class="sub-data-set hidden">
+                                <label><input type="radio" name="sub-data-device" value="event" /> Adverse Events</label><br />
+                                <label><input type="radio" name="sub-data-device" value="enforcement" /> Enforcement Reports</label><br />
+                            </div>
+                            <label><input type="radio" name="data-set" value="food" /> Foods</label><br />
+                            <div class="sub-data-set hidden">
+                                <label><input type="radio" name="sub-data-food" value="event" /> Adverse Events</label><br />
+                                <label><input type="radio" name="sub-data-food" value="enforcement" /> Enforcement Reports</label><br />
+                            </div>
                         </fieldset>
+                        <fieldset id="search-item-fieldset">
+                            <legend>What do you want to search for in <span class="data-set-choice"></span>?</legend>
+                            <small>Searches can consist of a field and a term, but <strong>the field is optional</strong> (a search with no field searches all fields). Spaces are allowed <strong>in the term only</strong>. To search for multiple items (i.e., multiple field/term pairs, where the field is optional), use the "Add Search Item" button.</small><br /><br />
+                            <div class="search-item">
+                                <span id="search-item-1-heading">Search Item <span class="search-item-num">1</span></span><br />
+                                <label>Field to search through: <input type="text" id="search-field-1" name="search-field-1" /></label><br />
+                                <label>Term to search for: <input type="text" id="search-term-1" name="search-term-1" /></label><br />
+                            </div>
+                            <br />
+                            <button type="button" id="add-search-term">Add Search Item</button>
+                        </fieldset>
+                        <button type="submit">Submit</button>
                     </form>
+
+                    <div id="results">
+                        <h3>Results</h3>
+                        <pre></pre>
+                    </div>
                 </section>
 
                 <aside id="sidebar">
@@ -61,6 +93,6 @@
             </div>
         </div>
 
-
+        <script src="javascripts/main.js"></script>
     </body>
 </html>
