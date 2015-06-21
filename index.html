@@ -34,7 +34,7 @@
                         <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome
                     </h3>
                     <p>The purpose of this page is to simplify the task of making queries to the openFDA data sets. Simply use the form below to make your query; you do not need to know the details of the openFDA API.</p>
-                    <strong>NOTE: Currently only the most basic of searches are supported. We hope to add additional capabilities soon.</strong><br /><br />
+                    <strong>NOTE: This is very much a quick hack-job. Not all search features are supported here (e.g., grouping, counting particular term matches, etc.), but most are.</strong><br /><br />
 
                     <form id="query-form">
                         <fieldset id="data-set-fieldset">
@@ -60,20 +60,22 @@
                             <legend>What do you want to search for in <b><span id="data-set-choice">drugs</span></b>?</legend>
                             <a id="instructions-toggle" href="#search-instructions">Show Search Instructions</a>
                             <div id="search-instructions" class="hidden">
-                                <small>Searches can consist of a field and a term, but <strong>the field is optional</strong> (a search with no field searches all fields). Spaces are allowed <strong>in the term only</strong>. To search for multiple items (i.e., multiple field/term pairs, where the field is optional), use the "Add Search Item" button.</small><br /><br />
-                                <small><b>Not sure what fields are available for searching through?</b> See the lists of fields provided on the openFDA website for the data you're interested in; for example, here is the reference for adverse events for devices: <a target="_blank" href="https://open.fda.gov/device/event/reference/#field-by-field-reference" title="Field-by-field Reference for Adverse Events for Devices">https://open.fda.gov/device/event/reference/#field-by-field-reference</a>.</small><br /><br />
+                                <p><small>Searches can consist of a field and a term, but <strong>the field is optional</strong> (a search with no field searches all fields). Spaces are allowed <strong>in the term only</strong>. To search for multiple items (i.e., multiple field/term pairs, where the field is optional), use the "Add Search Item" button.</small></p>
+                                <p><small><b>Not sure what fields are available for searching through?</b> See the lists of fields provided on the openFDA website for the data you're interested in; for example, here is the reference for adverse events for devices: <a target="_blank" href="https://open.fda.gov/device/event/reference/#field-by-field-reference" title="Field-by-field Reference for Adverse Events for Devices">https://open.fda.gov/device/event/reference/#field-by-field-reference</a>.</small></p>
+                                <p><small>Note also that searching by ranges is supported, though not currently in a user-friendly way. To search by a range, simply enter the range with square brackets, using the syntax required by the openFDA API, as your search term.</small></p>
                             </div>
                             <div class="search-item">
-                                <span id="search-item-1-heading">Search Item <span class="search-item-num">1</span></span><br />
-                                <label>Field to search through: <input type="text" id="search-field-1" name="search-field-1" /></label><br />
-                                <label>Term to search for: <input type="text" id="search-term-1" name="search-term-1" /></label><br />
+                                <h4 id="search-item-1-heading" class="plain-heading">Search Item <span class="search-item-num">1</span></h4>
+                                <label>Field to search through (optional): <input type="text" name="search-field-1" /></label><br />
+                                <label>Term to search for (required): <input type="text" name="search-term-1" /></label><br />
+                                <span>Exact match of search term? <label><input type="radio" name="exact-match-1" value="yes" /> Yes</label>&nbsp;<label><input type="radio" name="exact-match-1" value="no" checked="checked" /> No</label>
                             </div>
-                            <br />
                             <button type="button" id="add-search-term">Add Search Item</button>
                         </fieldset>
                         <br />
                         <label>How many results (at most) do you want? <input type="number" name="limit" min="1" max="200" step="1" /></label><br /><br />
-                        <button type="submit">Submit Query</button>
+                        <label>How many results (if any) do you want to skip? <input type="number" name="skip" min="0" max="200" step="1" /></label><br /><br />
+                        <button type="submit">Submit Query</button>&nbsp;<span class="loading hidden">Loading results...</span>
                     </form>
 
                     <div id="results">

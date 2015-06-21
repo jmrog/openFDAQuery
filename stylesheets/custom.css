@@ -2,10 +2,31 @@
     display: none;
 }
 
+h1.plain-heading:before,
+h2.plain-heading:before,
+h3.plain-heading:before,
+h4.plain-heading:before,
+h5.plain-heading:before,
+h6.plain-heading:before {
+    padding-right: 0.3em;
+    margin-left: -0.5em;
+    content: "";
+    color: #9ddcff;
+}
+
+div.joining-terms {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
 div.sub-data-set {
     padding-left: 30px;
 }
 
 a#instructions-toggle {
     text-decoration: underline;
+}
+
+button#add-search-term {
+    margin-top: 10px;
 }
