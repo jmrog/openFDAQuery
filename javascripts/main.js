@@ -91,8 +91,8 @@
 
             fullSearch = searchItems.reduce(function(searchString, item, idx) {
                 var joiningTerm = '',
-                    exactMatch = (el.find('input[name="exact-match-' + (idx + 1) + '"]:checked').val() === 'yes' ||
-                                  /^\[.*\]$/.test(item.term));
+                    exactMatch = (el.find('input[name="exact-match-' + (idx + 1) + '"]:checked').val() === 'yes' &&
+                                  !/^\[.*\]$/.test(item.term));
 
                 if (item.field) {
                     searchString += item.field + ':';
